@@ -1,0 +1,15 @@
+# =============================================================================
+# stardew-backup.timer
+# 稼働中の定期バックアップ（二重化）。停止直前の Backup Lambda とは別に、
+# 30 分ごとにセーブを S3 へ退避しておく。スポット中断への備え。
+# =============================================================================
+[Unit]
+Description=Periodic Stardew save backup
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=30min
+Unit=stardew-backup.service
+
+[Install]
+WantedBy=timers.target

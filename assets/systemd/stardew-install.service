@@ -1,0 +1,19 @@
+# =============================================================================
+# stardew-install.service
+# Stardew 本体 / SMAPI / Dedicated Server 系 MOD の導入（oneshot・冪等）。
+# 既に導入済みの場合はスキップする。EBS 永続化により通常は初回のみ実行される。
+# =============================================================================
+[Unit]
+Description=Install Stardew Valley + SMAPI + Dedicated Server MOD (idempotent)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/stardew.env
+User=stardew
+ExecStart=/usr/local/bin/stardew-install.sh
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,25 @@
+{
+  "name": "cdk-stardew",
+  "version": "0.1.0",
+  "description": "Stardew Valley dedicated server on AWS (CDK v2, TypeScript)",
+  "bin": {
+    "cdk-stardew": "bin/cdk-stardew.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "synth": "cdk synth",
+    "diff": "cdk diff",
+    "deploy": "cdk deploy"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "aws-cdk": "^2.160.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.4.5"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.160.0",
+    "constructs": "^10.3.0"
+  }
+}

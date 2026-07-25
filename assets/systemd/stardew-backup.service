@@ -1,0 +1,15 @@
+# =============================================================================
+# stardew-backup.service
+# セーブデータのみを S3 へ sync する（oneshot）。
+# stardew-backup.timer から定期実行され、Backup Lambda (SSM) からも起動可能。
+# =============================================================================
+[Unit]
+Description=Backup Stardew saves to S3
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/stardew.env
+User=stardew
+ExecStart=/usr/local/bin/stardew-backup.sh

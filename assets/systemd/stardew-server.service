@@ -1,0 +1,24 @@
+# =============================================================================
+# stardew-server.service
+# SMAPI をヘッドレスで起動し Stardew サーバーを常駐させる。
+# インストール完了後に起動。異常終了時は自動再起動。
+# =============================================================================
+[Unit]
+Description=Stardew Valley dedicated server (SMAPI headless)
+After=network-online.target stardew-install.service
+Requires=stardew-install.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/stardew.env
+User=stardew
+WorkingDirectory=/mnt/stardew/game
+# TODO(design §6.3): Dedicated Server 系 MOD の起動方式に合わせて調整。
+#   xvfb-run が必要になる場合あり（GUI 依存を回避）。
+ExecStart=/usr/local/bin/stardew-server.sh
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
